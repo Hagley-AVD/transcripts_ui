@@ -65,8 +65,19 @@ function theme_transcripts_ui_tcu_tier($vars)
 {
     $vars['classes'][] = 'tier';
     $vars['classes'][] = 'active';
+    if ($vars['tier_name'] == 'or_keywords') {
+        $tierLabel = 'Keywords: ';
+    } elseif ($vars['tier_name'] == 'or_transcript') {
+        $tierLabel = 'Partial Transcript: ';
+    } elseif ($vars['tier_name'] == 'or_annotation') {
+        $tierLabel = 'Synopsis: ';
+    }  elseif ($vars['tier_name'] == 'or_title') {
+        $tierLabel = '';
+    } elseif ($vars['tier_name'] == 'or_transcriptFull') {
+        $tierLabel = 'Transcript: ';
+    }
     $classes = implode(' ', $vars['classes']);
-    $out = "<div data-tier='{$vars['tier_name']}' class='$classes'>{$vars['tier_text']}</div>";
+    $out = "<div data-tier='{$vars['tier_name']}' class='$classes'><span class='tierLabels'>$tierLabel</span><span class='tierText'>{$vars['tier_text']}</span></div>";
     return $out;
 }
 
