@@ -63,14 +63,10 @@ function theme_transcripts_ui_speaker_name($vars)
 
 function theme_transcripts_ui_tcu_tier($vars)
 {
-	$vars = [];
-	$tierLabel = "";
+	$vars['classes'] = array();
     $vars['classes'][] = 'tier';
     $vars['classes'][] = 'active';
-	$vars['tier_name'] = "";
-	$vars['tier_text'] = "";
-	if (!empty($vars['tier_name'])){
-    if (!empty($vars['tier_name'] == 'or_keywords')) {
+    if ($vars['tier_name'] == 'or_keywords') {
         $tierLabel = 'Keywords: ';
     } elseif ($vars['tier_name'] == 'or_transcript') {
         $tierLabel = 'Partial Transcript: ';
@@ -80,10 +76,7 @@ function theme_transcripts_ui_tcu_tier($vars)
         $tierLabel = '';
     } elseif ($vars['tier_name'] == 'or_transcriptFull') {
         $tierLabel = 'Transcript: ';
-    } else {
-		return null;
 	}
-}
     $classes = implode(' ', $vars['classes']);
     $out = "<div data-tier='{$vars['tier_name']}' class='$classes'><span class='tierLabels'>$tierLabel</span><span class='tierText'>{$vars['tier_text']}</span></div>";
     return $out;
